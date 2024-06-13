@@ -38,6 +38,8 @@ The banking system demo uses a MySQL database to store information about users, 
 
 
 
+## Quick Insight at Endpoints
+
 | Endpoint                         | Method | Description                                      |
 |----------------------------------|--------|--------------------------------------------------|
 | `/users/login/vulnerable`        | POST   | Vulnerable login endpoint                        |
