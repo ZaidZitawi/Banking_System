@@ -1,52 +1,32 @@
 package com.banking.banking.Model;
-
 import jakarta.persistence.*;
-
-
 @Entity
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long accountId;
-
-    @Column(nullable = false, unique = true, length = 20)
-    private String accountNumber;
-
-    @Column(nullable = false, length = 50)
-    private String accountType;
-
-    @Column(nullable = false)
-    private double balance;
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
-    // Getters and setters
+    private double balance;
 
-    public Long getAccountId() {
-        return accountId;
+
+    public int getId() {
+        return id;
     }
 
-    public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getAccountNumber() {
-        return accountNumber;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     public double getBalance() {
@@ -55,14 +35,6 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
 
