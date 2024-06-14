@@ -77,7 +77,7 @@ public class UserController {
 
     //Broken Function Level Authorization fixed version
     // Secure createUser endpoint
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/create/secure")
     public ResponseEntity<UserDTO> secureCreateUser(@RequestBody UserDTO userDTO) {
         // Secure: Role-based access control
