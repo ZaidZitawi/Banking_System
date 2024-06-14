@@ -17,8 +17,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable int id) {
+        User user = userService.getUserById(id);
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(user.getUsername());
+        userDTO.setRole(user.getRole());
+        return ResponseEntity.ok(userDTO);
+    }
 
-    //Broken Authentication (API2:2023):
+    //Broken Authentication (API2)
     //Vulnerable login method without proper security checks.
     // Vulnerable login endpoint
     @PostMapping("/login/vulnerable")
@@ -34,7 +45,7 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
-    //its fixed version
+    //Broken Authentication fixed version
     // Secure login endpointcan you
     @PostMapping("/login/secure")
     public ResponseEntity<UserDTO> secureLogin(@RequestBody LoginRequest loginRequest) {
@@ -50,7 +61,7 @@ public class UserController {
     }
 
 
-    //Broken Function Level Authorization (API5:2023):
+    //Broken Function Level Authorization (API5)
     //Vulnerable createUser method that doesn't check for user roles properly.
     // Vulnerable createUser endpoint
     @PostMapping("/create/vulnerable")
@@ -64,7 +75,7 @@ public class UserController {
     }
 
 
-    //its fixed version
+    //Broken Function Level Authorization fixed version
     // Secure createUser endpoint
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create/secure")

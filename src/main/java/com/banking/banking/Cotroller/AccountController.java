@@ -6,10 +6,7 @@ import com.banking.banking.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.AccessDeniedException;
 import java.security.Principal;
@@ -46,5 +43,32 @@ public class AccountController {
         accountDTO.setOwnerId(account.getOwner().getId());
         accountDTO.setBalance(account.getBalance());
         return ResponseEntity.ok(accountDTO);
+    }
+
+
+    @PostMapping("/create")
+    public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO accountDTO) {
+        Account account = accountService.createAccount(accountDTO);
+        AccountDTO responseAccountDTO = new AccountDTO();
+        responseAccountDTO.setId(account.getId());
+        responseAccountDTO.setOwnerId(account.getOwner().getId());
+        responseAccountDTO.setBalance(account.getBalance());
+        return ResponseEntity.ok(responseAccountDTO);
+    }
+
+    @PutMapping("/update/{accountId}")
+    public ResponseEntity<AccountDTO> updateAccount(@PathVariable int accountId, @RequestBody AccountDTO accountDTO) {
+        Account account = accountService.updateAccount(accountId, accountDTO);
+        AccountDTO responseAccountDTO = new AccountDTO();
+        responseAccountDTO.setId(account.getId());
+        responseAccountDTO.setOwnerId(account.getOwner().getId());
+        responseAccountDTO.setBalance(account.getBalance());
+        return ResponseEntity.ok(responseAccountDTO);
+    }
+
+    @DeleteMapping("/delete/{accountId}")
+    public ResponseEntity<Void> deleteAccount(@PathVariable int accountId) {
+        accountService.deleteAccount(accountId);
+        return ResponseEntity.ok().build();
     }
 }
