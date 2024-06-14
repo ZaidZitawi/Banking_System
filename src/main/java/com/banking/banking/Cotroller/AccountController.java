@@ -4,7 +4,6 @@ import com.banking.banking.DTO.AccountDTO;
 import com.banking.banking.Model.Account;
 import com.banking.banking.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

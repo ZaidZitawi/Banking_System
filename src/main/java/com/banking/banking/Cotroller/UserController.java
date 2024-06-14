@@ -46,7 +46,7 @@ public class UserController {
     }
 
     //Broken Authentication fixed version
-    // Secure login endpointcan you
+    // Secure login endpoint you
     @PostMapping("/login/secure")
     public ResponseEntity<UserDTO> secureLogin(@RequestBody LoginRequest loginRequest) {
         // Secure: Proper authentication checks (assuming password is hashed)
