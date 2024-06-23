@@ -29,6 +29,7 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+
     //Broken Authentication (API2)
     //Vulnerable login method without proper security checks.
     // Vulnerable login endpoint

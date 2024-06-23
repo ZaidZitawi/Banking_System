@@ -19,7 +19,7 @@ public class AccountService {
 
     public Account getAccountById(int accountId) {
         return accountRepository.findById(accountId)
-                .orElseThrow(() -> new ResourceNotFoundException("Account not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Account not found with id " + accountId));
     }
 
     public Account createAccount(AccountDTO accountDTO) {
